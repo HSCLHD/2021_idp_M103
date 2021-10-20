@@ -1,37 +1,42 @@
 #include <Wire.h>
 #include <Adafruit_MotorShield.h>
 
-int left_sensor_pin0 =10;
-int left_sensor_pin1 =11;
-int right_sensor_pin0 =12;
-int right_sensor_pin1 =14; // don't use pin 13 sincw built in LED and resistor
-int count = 0;
+int left_sensor_pin0 = 9;
+int left_sensor_pin1 = 10;
+int right_sensor_pin0 = 11;
+int right_sensor_pin1 = 12; // don't use pin 13 sincw built in LED and resistor
+int motor_speed = 200;
 
-
+Adafruit_MotorShield AFMS = Adafruit_MotorShield();
+Adafruit_DCMotor *LeftMotor = AFMS.getMotor(3);
+Adafruit_DCMotor *RightMotor = AFMS.getMotor(4);
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-  pinMode(left_sensor_pin0, INPUT); 
+  //pinMode(left_sensor_pin0, INPUT); 
   pinMode(left_sensor_pin1, INPUT);
   pinMode(right_sensor_pin0, INPUT); 
-  pinMode(right_sensor_pin1, INPUT);
+  //pinMode(right_sensor_pin1, INPUT);
 
 }
 
 void loop() {
   // read the input pin:
   int leftState0 = digitalRead(left_sensor_pin0);
-  int leftState1 = digitalRead(left_sensor_pin0);
+  int leftState1 = digitalRead(left_sensor_pin1);
   int rightState0 = digitalRead(right_sensor_pin0);  
   int rightState1 = digitalRead(right_sensor_pin1);    
 
   
   // print out the states of the sensors: test
-  Serial.println(leftState0);
-  Serial.println(leftState1);
-  Serial.println(rightState0);  
-  Serial.println(rightState1);    
-  
+
+  //Serial.println(leftState0);
+  Serial.print(leftState1);
+  Serial.println(rightState0);
+  delay(1000);  
+  //Serial.println(rightState1);    
+
+  /*
   if (leftState1 == HIGH && rightState0 == HIGH){
       if (leftState0 == LOW && rightState1 == LOW){
         forwards();
@@ -47,18 +52,18 @@ void loop() {
     right();
   }
   else {
-    //check increments if reached 100 break out loop and start ultrasonic sensing
-    if (cout <= 100){
-      forwards();
+    check increments if reached 100 break out loop and start ultrasonic sensing
+     if (cout <= 100){
+    // forwards();
       }
-      else{
-        halt(); //for now just stop will add ultrasonic later                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-      }
-    }
-    cout += 1;
+    //  else{
+    //    halt(); //for now just stop will add ultrasonic later                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+    //  }
+    }*/
+    
 }
 
-
+/*
 void forwards(){
   LeftMotor->setSpeed(motor_speed); 
   RightMotor->setSpeed(motor_speed);
@@ -87,3 +92,4 @@ void halt(){
   LeftMotor->run(RELEASE);
   RightMotor->run(RELEASE);
 }
+*/
